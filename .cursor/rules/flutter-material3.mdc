@@ -1,0 +1,29 @@
+---
+description: Flutter Material 3 Default Standard — applies to all Flutter work in this repository
+alwaysApply: true
+---
+
+# Flutter Material 3 Default Standard
+
+Read and follow [AGENTS.md](mdc:AGENTS.md) in full for every task. The most
+important rules are repeated here.
+
+- Use Flutter's official **Material 3** (`useMaterial3: true`) with the theme in
+  `lib/core/theme/app_theme.dart` for 100% of the UI.
+- Take colours from `Theme.of(context).colorScheme` and text styles from
+  `Theme.of(context).textTheme`. Never hard-code colours, font sizes or magic
+  spacing numbers; use `AppSpacing`.
+- Make **every** screen and component fully responsive using the window size
+  classes in `lib/core/responsive/breakpoints.dart`, `ResponsiveBuilder`,
+  `AdaptiveScaffold`, `AdaptiveContentContainer` and `ResponsiveSliverGrid`.
+  Support 320 px to 2560 px wide, portrait and landscape, and 200% text scale.
+- Support Android, iOS, Web, Windows, macOS and Linux. Never import `dart:io`
+  in shared UI code; use `AppPlatform`.
+- Use a feature-first structure: `lib/features/<feature>/presentation/...`.
+  `core/` must never import from `features/`.
+- Use meaningful names (Effective Dart). Extract widget classes instead of
+  helper methods that return widgets. Prefer `const`.
+- Document every public member with `///` comments and explain non-obvious
+  logic with `//` comments.
+- Add or update tests, then run `dart format .`, `flutter analyze` and
+  `flutter test`. If they cannot be run, state that explicitly.

@@ -1,0 +1,23 @@
+# GitHub Copilot instructions
+
+This repository is the **Flutter Material 3 Default Standard**. The complete
+rules are in [`AGENTS.md`](../AGENTS.md); read it before generating code. The
+essentials:
+
+- Use Flutter's official **Material 3** design system (`useMaterial3: true`)
+  through `lib/core/theme/app_theme.dart` for the entire UI.
+- Get colours from `Theme.of(context).colorScheme`, text styles from
+  `Theme.of(context).textTheme`, and spacing from `AppSpacing`. Do not hard-code
+  colours, font sizes or magic numbers.
+- Every screen and widget must be **fully responsive** (320 px to 2560 px,
+  portrait and landscape, up to 200% text scale). Use `WindowSizeClass`,
+  `ResponsiveBuilder`, `AdaptiveScaffold`, `AdaptiveContentContainer` and
+  `ResponsiveSliverGrid`.
+- Support Android, iOS, Web, Windows, macOS and Linux. Do not import `dart:io`
+  in shared UI code.
+- Use the feature-first layout under `lib/features/<feature>/presentation/`.
+- Use clear, purposeful names following Effective Dart, and `///` doc comments
+  on every public member.
+- Extract widget classes rather than methods returning `Widget`; prefer `const`.
+- Add tests, and make sure `dart format .`, `flutter analyze` and
+  `flutter test` succeed.

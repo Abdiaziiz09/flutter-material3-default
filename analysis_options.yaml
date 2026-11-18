@@ -1,0 +1,50 @@
+# Static analysis rules for the Flutter Material 3 Default foundation.
+#
+# These rules are part of the repository standard: AI coding agents and human
+# contributors must keep `flutter analyze` at zero issues.
+
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - build/**
+
+linter:
+  rules:
+    # --- Documentation -----------------------------------------------------
+    # Every public member needs a doc comment (see docs/DOCUMENTATION_STANDARDS.md).
+    - public_member_api_docs
+
+    # --- Correctness and safety --------------------------------------------
+    - always_declare_return_types
+    - avoid_print
+    - avoid_dynamic_calls
+    - cancel_subscriptions
+    - close_sinks
+    - unawaited_futures
+    - use_build_context_synchronously
+
+    # --- Consistency and readability ---------------------------------------
+    - always_use_package_imports
+    - directives_ordering
+    - prefer_final_locals
+    - prefer_final_in_for_each
+    - require_trailing_commas
+    - use_super_parameters
+    - unnecessary_lambdas
+    - prefer_single_quotes
+
+    # --- Performance -------------------------------------------------------
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
+    - sized_box_for_whitespace
+    - use_colored_box
+    - use_decorated_box
