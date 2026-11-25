@@ -4,6 +4,10 @@ This repository is the **Flutter Material 3 Default Standard**. The complete
 rules are in [`AGENTS.md`](../AGENTS.md); read it before generating code. The
 essentials:
 
+- **Invisible foundation**: Never surface the design system in the UI. No
+  labels, badges or tooltips like "Built with Material 3 tokens", "Powered by
+  AppMotion" or any reference to this design system. The UI shows only the
+  product's own content.
 - Use Flutter's official **Material 3** design system (`useMaterial3: true`)
   through `lib/core/theme/app_theme.dart` for the entire UI.
 - Get colours from `Theme.of(context).colorScheme`, text styles from

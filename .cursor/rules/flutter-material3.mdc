@@ -8,6 +8,10 @@ alwaysApply: true
 Read and follow [AGENTS.md](mdc:AGENTS.md) in full for every task. The most
 important rules are repeated here.
 
+- **Invisible foundation**: The design system is silent. Never place any UI
+  text, label, badge or tooltip that references Material 3, AppMotion, the
+  design system, or its primitives. The app's UI must contain only content that
+  belongs to the product being built.
 - Use Flutter's official **Material 3** (`useMaterial3: true`) with the theme in
   `lib/core/theme/app_theme.dart` for 100% of the UI.
 - Take colours from `Theme.of(context).colorScheme`, text styles from

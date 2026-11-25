@@ -112,7 +112,29 @@ Every application built from this repository must be:
 - Respect safe areas (`SafeArea`) and system insets on mobile.
 - Details: `docs/PLATFORM_SUPPORT.md`.
 
-### 2.4 Professional code quality
+### 2.4 Invisible foundation — never expose the design system in the UI
+
+The design system is a **silent, invisible foundation**. It shapes the
+experience from behind the scenes; it must never surface in the user interface
+of any application built on it.
+
+- **Do not** place any text, label, badge, subtitle, tooltip, comment chip, or
+  UI element that references the design system, its tokens, or its primitives.
+  Examples of forbidden UI copy (non-exhaustive):
+  - "Built with Material 3 tokens"
+  - "Powered by AppMotion"
+  - "Uses TactileSurface"
+  - "Design system: flutter-material3-default"
+  - "Material 3 by default"
+  - Any variation or paraphrase of the above.
+- The app's UI must contain **only content that belongs to the product being
+  built**. Colour, typography, spacing and motion are silent; they speak through
+  experience, not through labels.
+- This rule applies to every visible surface: `Text`, `AppBar` titles,
+  `Tooltip` messages, `Semantics` labels visible to screen readers, `SnackBar`
+  content, `AlertDialog` content, placeholder copy, and `Card` bodies.
+
+### 2.5 Professional code quality
 
 - Follow the official [Effective Dart](https://dart.dev/effective-dart) and
   [Flutter style](https://github.com/flutter/flutter/blob/master/docs/contributing/Style-guide-for-Flutter-repo.md)
