@@ -35,9 +35,29 @@ from a clear standard. Give an agent this repository and it will find:
 Give the agent the repository URL and a prompt such as:
 
 ```text
-Use https://github.com/Abdiaziiz09/flutter-material3-default as the foundation
-for this project. Read AGENTS.md first and follow every standard in it. Build
-<describe your app>.
+Use https://github.com/Abdiaziiz09/flutter-material3-default as the **strict and exclusive foundation** for this project.
+
+**Before writing any code, thoroughly inspect and analyze the repository.** First, read `AGENTS.md`, `docs/AGENT_CHECKLIST.md`, and the relevant files in `docs/` (`ARCHITECTURE.md`, `MATERIAL3_GUIDELINES.md`, `DESIGN_TOKENS.md`, `MOTION_AND_INTERACTION.md`, `RESPONSIVE_DESIGN.md`, `NAMING_CONVENTIONS.md`, `DOCUMENTATION_STANDARDS.md`, and `ACCESSIBILITY.md`). Then examine `pubspec.yaml`, `analysis_options.yaml`, and the actual source code under `lib/` and `test/`.
+
+**Before implementation, summarize your findings using actual file paths, existing components, architecture, and conventions discovered.** Use these findings to guide your implementation. Do not start coding until the repository analysis is complete.
+
+**Strict requirements:**
+- Use only existing repository architecture, components, utilities, conventions, and dependencies in `pubspec.yaml`.
+- Reuse and extend existing `lib/core/` primitives (such as theme, responsive breakpoints/builders, `AdaptiveScaffold`, `ListDetailLayout`, motion, interaction, and shared widgets) and `lib/features/` structure instead of recreating or replacing them.
+- Follow `analysis_options.yaml` strictly, including mandatory public doc comments (`///`), naming rules, Material 3 standards, and responsive behavior across supported platforms.
+- Do not introduce external architectures, unrequested packages, custom design systems, unrelated features, extra screens beyond the requested scope, or unnecessary refactoring.
+- Do not assume anything exists without inspecting and verifying the repository.
+- Keep all changes within the existing project and preserve unrelated code.
+
+**Development workflow:**
+
+`INSPECT → ANALYZE → REPORT FINDINGS → PLAN → IMPLEMENT → VERIFY`
+
+Build the application based on what you actually discover in the repository, not assumptions or external patterns.
+
+Finish by running `dart format .`, `flutter analyze`, and `flutter test`. Fix identified issues and report the actual results.
+
+**Application:** <describe your app>.
 ```
 
 The agent must then follow `AGENTS.md`: Material 3 by default, fully responsive
