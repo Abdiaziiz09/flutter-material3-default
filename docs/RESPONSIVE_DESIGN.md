@@ -64,13 +64,27 @@ ResponsiveBuilder(
 );
 ```
 
-## Pattern: page with responsive content
+## Pattern: choose scroll & layout structure by context
+
+Do not force one scroll structure on every screen. Pick the pattern that fits
+the screen's purpose:
+
+- **Exploratory / mixed-content screens**: use `CustomScrollView` with
+  `SliverAppBar.large` (or `.medium`), `SliverPersistentHeader` (for sticky
+  search or filter bars), `AdaptiveContentContainer.sliver`,
+  `ResponsiveSliverGrid`, `SliverList.builder`, and `SliverFillRemaining` (for
+  centred empty/error states).
+- **Two-pane workspaces**: use `ListDetailLayout` for master-detail flows.
+- **Focused forms / simple lists**: use `Scaffold` with `AppBar` and
+  `SingleChildScrollView` + `AdaptiveContentContainer` or `ListView.builder`.
 
 ```dart
 CustomScrollView(
+  key: const PageStorageKey<String>('overview-scroll-view'),
   slivers: [
+    const SliverAppBar.large(title: Text('Overview')),
     AdaptiveContentContainer.sliver(
-      child: const SectionHeader(title: 'Overview'),
+      child: const SectionHeader(title: 'Highlights'),
     ),
     ResponsiveSliverGrid(
       itemCount: items.length,

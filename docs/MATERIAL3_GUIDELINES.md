@@ -84,7 +84,10 @@ Prefer the native Material 3 widget for each job:
 - Use the spacing scale in `AppSpacing`. It follows a 4 dp grid.
 - Page margins and gutters adapt by window size class (see
   [`RESPONSIVE_DESIGN.md`](RESPONSIVE_DESIGN.md)).
-- Use canonical adaptive layouts: list-detail, supporting pane and feed.
+- Use canonical adaptive layouts: `ListDetailLayout`, supporting pane, and
+  context-appropriate scroll views (`CustomScrollView` with `SliverAppBar` /
+  `SliverPersistentHeader` when scroll choreography adds clarity, or standard
+  `ListView` / `SingleChildScrollView` for focused tasks).
 
 ## Dark mode
 

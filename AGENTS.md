@@ -71,6 +71,14 @@ Every application built from this repository must be:
     progressive disclosure and inline expansion.
   - `TactileSurface` (`lib/core/interaction/tactile_surface.dart`) for organic
     press feedback paired with Material ink ripples, hover and keyboard focus.
+  - `AppHaptics` (`lib/core/interaction/app_haptics.dart`) for subtle,
+    mobile-only tactile confirmation on meaningful actions.
+- Choose scroll and layout structures by context rather than forcing one
+  pattern everywhere: use `CustomScrollView` with `SliverAppBar`,
+  `SliverPersistentHeader`, `ResponsiveSliverGrid` and `SliverFillRemaining`
+  when scroll choreography or mixed sections improve the experience; use
+  `ListDetailLayout` for master-detail workspaces, or a focused `Scaffold` +
+  `SingleChildScrollView` / `ListView` for forms and high-frequency tools.
 - Details: `docs/MOTION_AND_INTERACTION.md`.
 
 ### 2.3 Everything is responsive

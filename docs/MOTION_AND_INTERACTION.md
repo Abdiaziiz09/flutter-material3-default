@@ -78,9 +78,58 @@ Prefer these core primitives over ad-hoc `AnimationController` boilerplate:
 | `ContextualSwitcher` | `lib/core/motion/contextual_switcher.dart` | Cross-fades between keyed states; instant under reduced motion. |
 | `SmoothExpandable` | `lib/core/motion/smooth_expandable.dart` | Smoothly expands/collapses inline content; instant under reduced motion. |
 | `TactileSurface` | `lib/core/interaction/tactile_surface.dart` | Organic press micro-scale (`0.985`), Material ink ripple, hover & keyboard focus. |
+| `AppHaptics` | `lib/core/interaction/app_haptics.dart` | Semantic, mobile-only haptic confirmation (`selection`, `lightImpact`, `confirm`). |
 | `MotionPriority` | `lib/core/motion/motion_priority.dart` | Classifies animations as `essential`, `standard` or `decorative`. |
 
-## 5. Multi-Platform Input Awareness
+## 5. Adapting to Any Domain (Temperament Matrix)
+
+Different applications have different emotional and functional needs. Tune motion
+intensity and layout rhythm to the **purpose of the product**, not a rigid rule:
+
+| Product Context | Motion Temperament | Layout & Scroll Choice |
+| --------------- | ------------------ | ---------------------- |
+| **High-frequency / power-user** (editors, POS, admin tables, dev tools) | **Crisp & immediate** (`instant` / `quick`). Never delay repeated actions. | Compact `AppBar` or `ListDetailLayout`; avoid tall collapsing headers that steal vertical space. |
+| **Exploratory / content-rich** (dashboards, feeds, catalogues, readers) | **Fluid & continuous** (`standard` / `emphasized`). Scroll-linked headers and smooth reveals. | `CustomScrollView` with `SliverAppBar.large`/`.medium`, `SliverPersistentHeader` for sticky filters, `ResponsiveSliverGrid`. |
+| **Focused / transactional** (settings, forms, onboarding, checkout) | **Calm & reassuring**. Smooth progressive disclosure (`SmoothExpandable`), clear confirmation (`SnackBar` with undo). | `AdaptiveContentContainer` with `SingleChildScrollView` or `CustomScrollView`; avoid distracting motion around inputs. |
+
+## 6. Scroll Choreography & Sliver Decision Framework
+
+Scroll-linked motion (`CustomScrollView` + `Sliver*`) makes content-rich screens
+feel connected to the user's hand or mouse wheel—headers collapse smoothly,
+tonal elevation shifts (`scrolledUnderElevation`), and sticky controls remain
+within reach. However, **do not force slivers everywhere**. Choose deliberately:
+
+- **Use `CustomScrollView` + `Sliver*` when:**
+  - The screen mixes heterogeneous scrollable sections (e.g., a collapsing
+    `SliverAppBar.large`, a `SectionHeader`, a `ResponsiveSliverGrid`, and a
+    `SliverList`).
+  - A sticky control (`SliverPersistentHeader` with `pinned: true` or
+    `floating: true, snap: true`) should stay accessible while browsing.
+  - You need a centred empty/error state inside a scrollable page
+    (`SliverFillRemaining(hasScrollBody: false, child: FeedbackStateView(...))`).
+- **Use a standard `Scaffold` + `Column` / `ListView` / `ListDetailLayout` when:**
+  - The screen is a focused form, dialog, or two-pane workspace where a
+    collapsing header would waste space or distract from the task.
+  - A simple `ListView.builder` or `SingleChildScrollView` expresses the layout
+    clearly with less complexity.
+- Always attach a `PageStorageKey` to primary scroll views inside tabbed or
+  destination-based shells so scroll position is preserved across switches.
+
+## 7. Emotional Resonance, Trust & Forgiveness
+
+An interface feels alive and deeply satisfying when users trust it:
+
+- **Immediate causality**: Every tap or state change responds within `<= 100 ms`
+  (via `TactileSurface`, ink ripples, or `ContextualSwitcher`).
+- **Forgiveness over fear**: For reversible actions (archiving, deleting,
+  toggling), act immediately and offer an **Undo** action in a `SnackBar`
+  instead of interrupting flow with confirmation dialogs.
+- **No dead ends**: Pair empty or error states (`FeedbackStateView`) with warm,
+  clear copy and one obvious recovery action.
+- **Sparing haptics**: Use `AppHaptics.selection()` or `AppHaptics.confirm()`
+  only for meaningful mobile touch moments—never on every scroll tick.
+
+## 8. Multi-Platform Input Awareness
 
 - **Touch**: Tactile press feedback (`TactileSurface`), native scroll physics,
   and >= 48 × 48 dp targets.
