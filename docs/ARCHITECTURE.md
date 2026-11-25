@@ -37,7 +37,8 @@ lib/
 │   ├── layout/
 │   │   ├── adaptive_scaffold.dart
 │   │   ├── app_destination.dart
-│   │   └── list_detail_layout.dart
+│   │   ├── list_detail_layout.dart
+│   │   └── supporting_pane_layout.dart
 │   ├── motion/
 │   │   ├── contextual_switcher.dart
 │   │   ├── motion_priority.dart
@@ -61,6 +62,7 @@ lib/
 │   └── widgets/
 │       ├── adaptive_content_container.dart
 │       ├── app_feedback.dart
+│       ├── async_data_view.dart
 │       ├── feedback_state_view.dart
 │       ├── paginated_sliver_list.dart
 │       ├── responsive_sliver_grid.dart

@@ -107,7 +107,7 @@ lib/
 ├── core/
 │   ├── constants/        # App-wide constants
 │   ├── interaction/      # TactileSurface and organic input feedback
-│   ├── layout/           # AdaptiveScaffold, ListDetailLayout + navigation model
+│   ├── layout/           # AdaptiveScaffold, ListDetailLayout, SupportingPaneLayout
 │   ├── motion/           # Context-aware motion (ContextualSwitcher, SmoothExpandable)
 │   ├── platform/         # Platform detection, scroll behaviour
 │   ├── responsive/       # Window size classes and builders
@@ -142,6 +142,7 @@ Highlights:
 | [`docs/MOTION_AND_INTERACTION.md`](docs/MOTION_AND_INTERACTION.md) | Context-aware motion and tactile interaction principles |
 | [`docs/ENGAGEMENT_PRINCIPLES.md`](docs/ENGAGEMENT_PRINCIPLES.md) | Six foundational principles for engaging, frictionless experiences |
 | [`docs/RESPONSIVE_DESIGN.md`](docs/RESPONSIVE_DESIGN.md) | Breakpoints and adaptive layout patterns |
+| [`docs/FORM_PATTERNS.md`](docs/FORM_PATTERNS.md) | Validation, error colouring and forgiveness in forms |
 | [`docs/PLATFORM_SUPPORT.md`](docs/PLATFORM_SUPPORT.md) | Per-platform considerations |
 | [`docs/NAMING_CONVENTIONS.md`](docs/NAMING_CONVENTIONS.md) | Naming rules with examples |
 | [`docs/DOCUMENTATION_STANDARDS.md`](docs/DOCUMENTATION_STANDARDS.md) | Comment and doc-comment rules |

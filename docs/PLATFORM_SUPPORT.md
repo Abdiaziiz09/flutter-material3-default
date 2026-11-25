@@ -48,6 +48,42 @@ flutter build macos          # macOS (requires macOS and Xcode)
 flutter build linux          # Linux (requires Linux build toolchain)
 ```
 
+## Back navigation
+
+### Android — system back gesture
+
+`AppShellPage` wraps `AdaptiveScaffold` with `PopScope`:
+
+```dart
+PopScope(
+  // On the root destination (Home) the app exits normally.
+  canPop: _selectedDestinationIndex == 0,
+  onPopInvokedWithResult: (didPop, _) {
+    if (!didPop && _selectedDestinationIndex != 0) {
+      setState(() => _selectedDestinationIndex = 0);
+    }
+  },
+  child: AdaptiveScaffold(...),
+)
+```
+
+**Rule**: back from any secondary destination → Home; back from Home → exit.
+This is the standard Android multi-tab pattern. Never pop top-level destinations
+off the navigator stack; use `_selectedDestinationIndex` instead.
+
+### iOS — swipe back and predictive back
+
+Flutter's `MaterialPageRoute` handles iOS swipe-back automatically. No
+additional code is needed inside `AppShellPage`. Ensure each pushed route uses
+`MaterialPageRoute` (or `CupertinoPageRoute` for mixed apps) so the iOS
+back-swipe gesture is registered correctly.
+
+### Web — browser back button
+
+The browser back button is handled by the Flutter navigator. If you adopt
+`go_router` or another deep-link package, make sure each destination maps to a
+distinct path so the browser history entries are meaningful.
+
 ## Native platform folders
 
 The `android/`, `ios/`, `web/`, `windows/`, `macos/` and `linux/` folders are
