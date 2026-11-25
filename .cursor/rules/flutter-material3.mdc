@@ -22,6 +22,9 @@ important rules are repeated here.
   `SmoothExpandable`, `TactileSurface`) only when motion communicates state,
   continuity or tactile feedback; never add decorative noise, and always respect
   `MediaQuery.disableAnimationsOf(context)`. See `docs/MOTION_AND_INTERACTION.md`.
+- Apply **engagement foundations** (`docs/ENGAGEMENT_PRINCIPLES.md`): reduce
+  friction on core actions, provide a clear default path, eliminate dead ends,
+  and adapt to the product's domain.
 - Make **every** screen and component fully responsive using the window size
   classes in `lib/core/responsive/breakpoints.dart`, `ResponsiveBuilder`,
   `AdaptiveScaffold`, `ListDetailLayout`, `AdaptiveContentContainer`,

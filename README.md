@@ -140,6 +140,7 @@ Highlights:
 | [`docs/MATERIAL3_GUIDELINES.md`](docs/MATERIAL3_GUIDELINES.md) | How to apply Material 3 correctly |
 | [`docs/DESIGN_TOKENS.md`](docs/DESIGN_TOKENS.md) | Colour, typography, spacing, radii and motion tokens |
 | [`docs/MOTION_AND_INTERACTION.md`](docs/MOTION_AND_INTERACTION.md) | Context-aware motion and tactile interaction principles |
+| [`docs/ENGAGEMENT_PRINCIPLES.md`](docs/ENGAGEMENT_PRINCIPLES.md) | Six foundational principles for engaging, frictionless experiences |
 | [`docs/RESPONSIVE_DESIGN.md`](docs/RESPONSIVE_DESIGN.md) | Breakpoints and adaptive layout patterns |
 | [`docs/PLATFORM_SUPPORT.md`](docs/PLATFORM_SUPPORT.md) | Per-platform considerations |
 | [`docs/NAMING_CONVENTIONS.md`](docs/NAMING_CONVENTIONS.md) | Naming rules with examples |

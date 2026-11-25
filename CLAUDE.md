@@ -13,6 +13,7 @@ Quick reminders:
   or the design system itself. The UI contains only the product's own content.
 - **Design tokens**: use `Theme.of(context).colorScheme`, `textTheme`, `AppSpacing`, `AppRadii`, and `context.motion` (`AppMotion`).
 - **Context-aware motion & interaction**: use `ContextualSwitcher`, `SmoothExpandable`, and `TactileSurface` only where motion adds clarity or tactile feedback, and always respect `MediaQuery.disableAnimationsOf(context)`.
+- **Engagement foundations**: reduce friction, guide the default path, eliminate dead ends (`FeedbackStateView`), and preserve user progress (`docs/ENGAGEMENT_PRINCIPLES.md`).
 - **Fully responsive** using `lib/core/responsive/`, `AdaptiveScaffold`, and `ListDetailLayout`.
 - Meaningful names and `///` documentation on every public member.
 - Finish with `dart format .`, `flutter analyze` and `flutter test`. If you

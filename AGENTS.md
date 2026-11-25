@@ -187,6 +187,22 @@ of any application built on it.
   `build` methods free of heavy work. Dispose controllers.
 - Details: `docs/ACCESSIBILITY.md`.
 
+### 2.8 Product engagement foundations
+
+- Design experiences that feel effortless, continuous, and rewarding without
+  manipulative dark patterns:
+  - **Reduce friction**: keep core actions within natural reach and minimal
+    steps.
+  - **Guide the default path**: lead with one clear primary action and use
+    progressive disclosure (`SmoothExpandable`) for secondary options.
+  - **Eliminate dead ends**: always pair empty or error states
+    (`FeedbackStateView`) with a clear next action, and preserve user context
+    (`PageStorageKey`, `ListDetailLayout`).
+  - **Compound value**: remember preferences and surface meaningful progress
+    over time, paired with forgiving Undo flows.
+- Adapt these principles to the product's domain and purpose.
+- Details: `docs/ENGAGEMENT_PRINCIPLES.md`.
+
 ---
 
 ## 3. Mandatory workflow for agents

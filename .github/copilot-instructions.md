@@ -17,6 +17,8 @@ essentials:
 - Apply **context-aware motion & interaction** (`ContextualSwitcher`,
   `SmoothExpandable`, `TactileSurface`) purposefully — never add gratuitous
   animations, and always respect `MediaQuery.disableAnimationsOf(context)`.
+- Follow **engagement foundations** (`docs/ENGAGEMENT_PRINCIPLES.md`): keep core
+  actions effortless, guide the default path, and eliminate dead ends.
 - Every screen and widget must be **fully responsive** (320 px to 2560 px,
   portrait and landscape, up to 200% text scale). Use `WindowSizeClass`,
   `ResponsiveBuilder`, `AdaptiveScaffold`, `ListDetailLayout`,
