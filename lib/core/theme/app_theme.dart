@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material3_default/core/theme/app_motion.dart';
+import 'package:flutter_material3_default/core/theme/app_status_colors.dart';
 
 /// Builds the Material 3 themes used by the whole application.
 ///
@@ -8,8 +9,8 @@ import 'package:flutter_material3_default/core/theme/app_motion.dart';
 /// [seedColor] through [ColorScheme.fromSeed], which guarantees accessible
 /// contrast and consistent light and dark palettes.
 ///
-/// Motion tokens ([AppMotion]) are registered as a theme extension so every
-/// widget can adapt transitions and interactions consistently.
+/// Motion tokens ([AppMotion]) and semantic status colours ([AppStatusColors])
+/// are registered as theme extensions so every widget can adapt consistently.
 ///
 /// To rebrand an application, change [seedColor] or pass a custom `seedColor`
 /// to [light] and [dark]; do not recolour individual widgets.
@@ -21,19 +22,32 @@ abstract final class AppTheme {
   static ThemeData light({
     Color seedColor = AppTheme.seedColor,
     AppMotion motion = AppMotion.defaults,
-  }) => _buildTheme(Brightness.light, seedColor: seedColor, motion: motion);
+    AppStatusColors statusColors = AppStatusColors.light,
+  }) => _buildTheme(
+    Brightness.light,
+    seedColor: seedColor,
+    motion: motion,
+    statusColors: statusColors,
+  );
 
   /// Dark theme.
   static ThemeData dark({
     Color seedColor = AppTheme.seedColor,
     AppMotion motion = AppMotion.defaults,
-  }) => _buildTheme(Brightness.dark, seedColor: seedColor, motion: motion);
+    AppStatusColors statusColors = AppStatusColors.dark,
+  }) => _buildTheme(
+    Brightness.dark,
+    seedColor: seedColor,
+    motion: motion,
+    statusColors: statusColors,
+  );
 
   /// Creates a Material 3 theme for the given [brightness].
   static ThemeData _buildTheme(
     Brightness brightness, {
     required Color seedColor,
     required AppMotion motion,
+    required AppStatusColors statusColors,
   }) {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: seedColor,
@@ -45,7 +59,7 @@ abstract final class AppTheme {
       colorScheme: colorScheme,
       // Compact density on desktop and web, comfortable density on mobile.
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      extensions: <ThemeExtension<dynamic>>[motion],
+      extensions: <ThemeExtension<dynamic>>[motion, statusColors],
     );
   }
 }

@@ -11,8 +11,16 @@ import 'package:flutter_material3_default/features/settings/presentation/pages/s
 /// connects features together. To add a top-level destination, add an entry to
 /// both [_destinations] and [_pages] (the lists must stay in the same order).
 class AppShellPage extends StatefulWidget {
-  /// Creates the navigation shell.
-  const AppShellPage({super.key});
+  /// Creates the navigation shell, optionally starting at
+  /// [initialDestinationIndex].
+  const AppShellPage({this.initialDestinationIndex = 0, super.key})
+    : assert(
+        initialDestinationIndex >= 0 && initialDestinationIndex < 3,
+        'initialDestinationIndex must refer to a valid destination.',
+      );
+
+  /// Initial destination selected when the shell is first built.
+  final int initialDestinationIndex;
 
   @override
   State<AppShellPage> createState() => _AppShellPageState();
@@ -43,7 +51,7 @@ class _AppShellPageState extends State<AppShellPage> {
     SettingsPage(),
   ];
 
-  int _selectedDestinationIndex = 0;
+  late int _selectedDestinationIndex = widget.initialDestinationIndex;
 
   void _handleDestinationSelected(int newDestinationIndex) {
     setState(() {

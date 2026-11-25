@@ -7,7 +7,7 @@ checked, say so explicitly in your final message and explain why.
 
 - [ ] Uses `MaterialApp` with `AppTheme` and `useMaterial3: true`.
 - [ ] Uses native Material 3 widgets; no Cupertino substitutes.
-- [ ] All colours come from `Theme.of(context).colorScheme`.
+- [ ] All colours come from `Theme.of(context).colorScheme` or `context.statusColors` (`AppStatusColors`).
 - [ ] All text styles come from `Theme.of(context).textTheme`.
 - [ ] Spacing uses `AppSpacing`; no magic numbers.
 - [ ] Looks correct in both light and dark mode.
@@ -52,5 +52,5 @@ checked, say so explicitly in your final message and explain why.
 
 - [ ] `dart format .` produces no changes.
 - [ ] `flutter analyze` reports zero issues.
-- [ ] `flutter test` passes, including tests for the new behaviour.
+- [ ] `flutter test` passes, including tests for the new behaviour, 200 % text scale, and accessibility guidelines (`androidTapTargetGuideline`, `labeledTapTargetGuideline`, `textContrastGuideline`).
 - [ ] The final message states exactly what was run and what was not.

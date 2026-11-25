@@ -17,6 +17,11 @@ roles from `Theme.of(context).colorScheme`:
 - Outlines & dividers: `outline`, `outlineVariant`
 - Errors: `error` / `onError`, `errorContainer` / `onErrorContainer`
 
+For **success**, **warning**, and **info** states (which Material 3's
+`ColorScheme` does not include), use `context.statusColors` (`AppStatusColors`
+in `lib/core/theme/app_status_colors.dart`), which provides contrast-paired
+light and dark tokens (`success`, `onSuccess`, `successContainer`, etc.).
+
 ## 2. Typography (`TextTheme`)
 
 Read styles from `Theme.of(context).textTheme` (`headlineMedium`, `titleLarge`,

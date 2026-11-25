@@ -75,4 +75,48 @@ void main() {
       }
     }
   });
+
+  group('text scale and accessibility', () {
+    for (final destination in _destinations) {
+      testWidgets(
+        'has no overflow on ${destination.name} page at 200% text scale',
+        (tester) async {
+          _setWindowSize(tester, const Size(400, 800));
+
+          await tester.pumpWidget(
+            const MediaQuery(
+              data: MediaQueryData(textScaler: TextScaler.linear(2.0)),
+              child: MaterialDefaultApp(),
+            ),
+          );
+          await tester.pumpAndSettle();
+
+          final icon = destination.icon;
+          if (icon != null) {
+            await tester.tap(find.byIcon(icon));
+            await tester.pumpAndSettle();
+          }
+
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+
+    testWidgets('meets tap target and labelled target guidelines', (
+      tester,
+    ) async {
+      _setWindowSize(tester, const Size(400, 800));
+      final semanticsHandle = tester.ensureSemantics();
+
+      try {
+        await tester.pumpWidget(const MaterialDefaultApp());
+        await tester.pumpAndSettle();
+
+        await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
+        await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+      } finally {
+        semanticsHandle.dispose();
+      }
+    });
+  });
 }

@@ -30,9 +30,18 @@ lib/
 │       └── not_found_page.dart
 ├── core/
 │   ├── constants/app_constants.dart
+│   ├── interaction/
+│   │   ├── app_haptics.dart
+│   │   ├── keyboard_shortcuts.dart
+│   │   └── tactile_surface.dart
 │   ├── layout/
 │   │   ├── adaptive_scaffold.dart
-│   │   └── app_destination.dart
+│   │   ├── app_destination.dart
+│   │   └── list_detail_layout.dart
+│   ├── motion/
+│   │   ├── contextual_switcher.dart
+│   │   ├── motion_priority.dart
+│   │   └── smooth_expandable.dart
 │   ├── platform/
 │   │   ├── app_platform.dart
 │   │   └── app_scroll_behavior.dart
@@ -40,14 +49,23 @@ lib/
 │   │   ├── breakpoints.dart
 │   │   ├── responsive_builder.dart
 │   │   └── responsive_context_extension.dart
+│   ├── storage/
+│   │   └── key_value_store.dart
 │   ├── theme/
+│   │   ├── app_motion.dart
+│   │   ├── app_radii.dart
 │   │   ├── app_spacing.dart
+│   │   ├── app_status_colors.dart
 │   │   ├── app_theme.dart
 │   │   └── theme_controller.dart
 │   └── widgets/
 │       ├── adaptive_content_container.dart
+│       ├── app_feedback.dart
+│       ├── feedback_state_view.dart
+│       ├── paginated_sliver_list.dart
 │       ├── responsive_sliver_grid.dart
-│       └── section_header.dart
+│       ├── section_header.dart
+│       └── skeleton_box.dart
 └── features/
     └── <feature>/
         ├── data/            (optional)
