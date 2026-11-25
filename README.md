@@ -159,3 +159,7 @@ flutter test           # Unit and widget tests
 ## License
 
 Released under the [MIT License](LICENSE).
+
+## Author
+
+**Engineer Abdiaziz Bakaal**
