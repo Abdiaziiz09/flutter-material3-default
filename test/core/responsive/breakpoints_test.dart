@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('WindowSizeClass.fromWidth', () {
     test('classifies widths at and around every Material 3 breakpoint', () {
-      const expectedClassByWidth = <double, WindowSizeClass>{
+      final expectedClassByWidth = <double, WindowSizeClass>{
         0: WindowSizeClass.compact,
         320: WindowSizeClass.compact,
         599.9: WindowSizeClass.compact,

@@ -36,6 +36,13 @@ class HomePage extends StatelessWidget {
           'from the available width.',
     ),
     _HighlightContent(
+      icon: Icons.animation_outlined,
+      title: 'Context-aware motion',
+      description:
+          'Tactile interactions and smooth state transitions that adapt to '
+          'purpose and respect reduced-motion preferences.',
+    ),
+    _HighlightContent(
       icon: Icons.accessibility_new_outlined,
       title: 'Accessible',
       description:
@@ -44,10 +51,10 @@ class HomePage extends StatelessWidget {
     ),
     _HighlightContent(
       icon: Icons.integration_instructions_outlined,
-      title: 'Built for AI agents',
+      title: 'AI-ready design system',
       description:
-          'AGENTS.md tells coding agents exactly which standards to follow '
-          'when they build on this foundation.',
+          'AGENTS.md and tokenised primitives guide coding agents to build '
+          'consistent, durable applications.',
     ),
     _HighlightContent(
       icon: Icons.rule_outlined,

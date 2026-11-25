@@ -43,15 +43,37 @@ Every application built from this repository must be:
 - **Typography** comes from `Theme.of(context).textTheme` (for example
   `headlineMedium`, `bodyLarge`). Never hard-code font sizes or weights inline;
   use `copyWith` on a theme style when a variation is needed.
-- **Shape, elevation and spacing** follow Material 3 defaults. Use the spacing
-  scale in `lib/core/theme/app_spacing.dart`; do not scatter magic numbers.
+- **Shape, elevation, radii and spacing** follow Material 3 defaults. Use the
+  spacing scale in `lib/core/theme/app_spacing.dart` and the corner radius
+  tokens in `lib/core/theme/app_radii.dart`; do not scatter magic numbers.
 - Support **light and dark** themes everywhere. Test both.
 - Do not use Cupertino widgets as a substitute for Material widgets. Platform
   adaptation is done through Material's adaptive behaviour (see
   `docs/PLATFORM_SUPPORT.md`).
-- Details: `docs/MATERIAL3_GUIDELINES.md`.
+- Details: `docs/MATERIAL3_GUIDELINES.md` and `docs/DESIGN_TOKENS.md`.
 
-### 2.2 Everything is responsive
+### 2.2 Context-aware motion and interaction
+
+- Motion is **communication, continuity and tactile feedback** — never
+  decoration. Animate only when it clarifies a state change, preserves spatial
+  context, or confirms direct user manipulation.
+- Avoid gratuitous animations, simultaneous competing motion, or delays in
+  high-frequency data-entry/power-user workflows.
+- Always read timing and easing from `context.motion` (`AppMotion` in
+  `lib/core/theme/app_motion.dart`) and resolve durations with
+  `context.motion.durationFor(context, ...)` so
+  `MediaQuery.disableAnimationsOf(context)` is respected automatically.
+- Prefer the built-in primitives before writing custom `AnimationController`
+  code:
+  - `ContextualSwitcher` (`lib/core/motion/contextual_switcher.dart`) for
+    loading/content/empty/error state switches.
+  - `SmoothExpandable` (`lib/core/motion/smooth_expandable.dart`) for
+    progressive disclosure and inline expansion.
+  - `TactileSurface` (`lib/core/interaction/tactile_surface.dart`) for organic
+    press feedback paired with Material ink ripples, hover and keyboard focus.
+- Details: `docs/MOTION_AND_INTERACTION.md`.
+
+### 2.3 Everything is responsive
 
 - Every screen and every reusable component must work from **320 px** wide up
   to **2560 px** wide, in portrait and landscape, with text scale up to
@@ -189,11 +211,13 @@ lib/
 │       └── not_found_page.dart   # Fallback for unknown routes
 ├── core/                         # Cross-feature, app-agnostic building blocks
 │   ├── constants/                # App-wide constants
-│   ├── layout/                   # AdaptiveScaffold and navigation model
+│   ├── interaction/              # TactileSurface and input feedback
+│   ├── layout/                   # AdaptiveScaffold, ListDetailLayout, destinations
+│   ├── motion/                   # ContextualSwitcher, SmoothExpandable, MotionPriority
 │   ├── platform/                 # Platform detection and scroll behaviour
 │   ├── responsive/               # Breakpoints and responsive helpers
-│   ├── theme/                    # Material 3 theme, spacing, theme controller
-│   └── widgets/                  # Generic reusable widgets
+│   ├── theme/                    # Material 3 theme, spacing, radii, motion tokens
+│   └── widgets/                  # Generic reusable widgets (FeedbackStateView, ...)
 └── features/
     └── <feature_name>/
         ├── data/                 # (optional) repositories, data sources, DTOs

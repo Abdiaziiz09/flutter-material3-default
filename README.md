@@ -86,11 +86,13 @@ lib/
 ├── app/                  # MaterialApp, routing and the navigation shell
 ├── core/
 │   ├── constants/        # App-wide constants
-│   ├── layout/           # AdaptiveScaffold + navigation model
+│   ├── interaction/      # TactileSurface and organic input feedback
+│   ├── layout/           # AdaptiveScaffold, ListDetailLayout + navigation model
+│   ├── motion/           # Context-aware motion (ContextualSwitcher, SmoothExpandable)
 │   ├── platform/         # Platform detection, scroll behaviour
 │   ├── responsive/       # Window size classes and builders
-│   ├── theme/            # Material 3 theme, spacing, theme controller
-│   └── widgets/          # Reusable responsive widgets
+│   ├── theme/            # Material 3 theme, spacing, radii, motion tokens
+│   └── widgets/          # Reusable responsive widgets (FeedbackStateView, ...)
 └── features/
     ├── home/             # Sample dashboard
     ├── components/       # Material 3 component showcase
@@ -116,6 +118,8 @@ Highlights:
 | [`AGENTS.md`](AGENTS.md) | The standard AI agents must follow |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Project structure and layering rules |
 | [`docs/MATERIAL3_GUIDELINES.md`](docs/MATERIAL3_GUIDELINES.md) | How to apply Material 3 correctly |
+| [`docs/DESIGN_TOKENS.md`](docs/DESIGN_TOKENS.md) | Colour, typography, spacing, radii and motion tokens |
+| [`docs/MOTION_AND_INTERACTION.md`](docs/MOTION_AND_INTERACTION.md) | Context-aware motion and tactile interaction principles |
 | [`docs/RESPONSIVE_DESIGN.md`](docs/RESPONSIVE_DESIGN.md) | Breakpoints and adaptive layout patterns |
 | [`docs/PLATFORM_SUPPORT.md`](docs/PLATFORM_SUPPORT.md) | Per-platform considerations |
 | [`docs/NAMING_CONVENTIONS.md`](docs/NAMING_CONVENTIONS.md) | Naming rules with examples |

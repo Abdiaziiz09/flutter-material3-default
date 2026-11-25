@@ -60,6 +60,19 @@ class SettingsPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: AppSpacing.large),
+              const SectionHeader(title: 'Accessibility & motion'),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.motion_photos_auto_outlined),
+                title: const Text('Reduced motion'),
+                subtitle: Text(
+                  MediaQuery.disableAnimationsOf(context)
+                      ? 'Active — non-essential animations are disabled by '
+                            'your system settings'
+                      : 'Inactive — standard context-aware motion is enabled',
+                ),
+              ),
+              const SizedBox(height: AppSpacing.large),
               const SectionHeader(title: 'About'),
               ListTile(
                 contentPadding: EdgeInsets.zero,

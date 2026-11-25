@@ -114,9 +114,9 @@ class _InputControlsShowcaseSectionState
         const SizedBox(height: AppSpacing.large),
         // Constraining the width keeps the field readable on wide windows while
         // it still shrinks to fit narrow ones.
-        const ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: _maxTextFieldWidth),
-          child: TextField(
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: _maxTextFieldWidth),
+          child: const TextField(
             decoration: InputDecoration(
               labelText: 'Display name',
               helperText: 'Shown to other people',

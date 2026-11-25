@@ -10,12 +10,18 @@ important rules are repeated here.
 
 - Use Flutter's official **Material 3** (`useMaterial3: true`) with the theme in
   `lib/core/theme/app_theme.dart` for 100% of the UI.
-- Take colours from `Theme.of(context).colorScheme` and text styles from
-  `Theme.of(context).textTheme`. Never hard-code colours, font sizes or magic
-  spacing numbers; use `AppSpacing`.
+- Take colours from `Theme.of(context).colorScheme`, text styles from
+  `Theme.of(context).textTheme`, spacing from `AppSpacing`, radii from
+  `AppRadii`, and motion from `context.motion` (`AppMotion`). Never hard-code
+  colours, font sizes, radii, durations or magic spacing numbers.
+- Use **context-aware motion & interaction** (`ContextualSwitcher`,
+  `SmoothExpandable`, `TactileSurface`) only when motion communicates state,
+  continuity or tactile feedback; never add decorative noise, and always respect
+  `MediaQuery.disableAnimationsOf(context)`. See `docs/MOTION_AND_INTERACTION.md`.
 - Make **every** screen and component fully responsive using the window size
   classes in `lib/core/responsive/breakpoints.dart`, `ResponsiveBuilder`,
-  `AdaptiveScaffold`, `AdaptiveContentContainer` and `ResponsiveSliverGrid`.
+  `AdaptiveScaffold`, `ListDetailLayout`, `AdaptiveContentContainer`,
+  `ResponsiveSliverGrid` and `FeedbackStateView`.
   Support 320 px to 2560 px wide, portrait and landscape, and 200% text scale.
 - Support Android, iOS, Web, Windows, macOS and Linux. Never import `dart:io`
   in shared UI code; use `AppPlatform`.

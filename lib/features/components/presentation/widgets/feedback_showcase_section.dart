@@ -74,10 +74,7 @@ class FeedbackShowcaseSection extends StatelessWidget {
           runSpacing: AppSpacing.medium,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            const Badge(
-              label: Text('3'),
-              child: Icon(Icons.mail_outlined),
-            ),
+            const Badge(label: Text('3'), child: Icon(Icons.mail_outlined)),
             // Determinate indicators do not animate, which keeps tests stable.
             const CircularProgressIndicator(value: 0.6),
             Text('60% complete', style: theme.textTheme.bodyMedium),

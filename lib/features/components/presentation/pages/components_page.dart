@@ -3,9 +3,10 @@ import 'package:flutter_material3_default/core/widgets/adaptive_content_containe
 import 'package:flutter_material3_default/features/components/presentation/widgets/buttons_showcase_section.dart';
 import 'package:flutter_material3_default/features/components/presentation/widgets/feedback_showcase_section.dart';
 import 'package:flutter_material3_default/features/components/presentation/widgets/input_controls_showcase_section.dart';
+import 'package:flutter_material3_default/features/components/presentation/widgets/motion_interaction_showcase_section.dart';
 
-/// Catalogue of the Material 3 components that applications built from this
-/// foundation are expected to use.
+/// Catalogue of the Material 3 components and interaction primitives that
+/// applications built from this foundation are expected to use.
 ///
 /// It doubles as a visual regression surface: check new theme changes here in
 /// light and dark mode.
@@ -26,6 +27,7 @@ class ComponentsPage extends StatelessWidget {
             children: [
               ButtonsShowcaseSection(),
               InputControlsShowcaseSection(),
+              MotionInteractionShowcaseSection(),
               FeedbackShowcaseSection(),
             ],
           ),

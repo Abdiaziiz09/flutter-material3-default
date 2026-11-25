@@ -12,10 +12,9 @@ class NotFoundPage extends StatelessWidget {
   final String? routeName;
 
   void _handleGoHomePressed(BuildContext context) {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-      AppRoutes.home,
-      (route) => false,
-    );
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil(AppRoutes.home, (route) => false);
   }
 
   @override

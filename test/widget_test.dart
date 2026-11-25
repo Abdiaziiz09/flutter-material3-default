@@ -56,25 +56,22 @@ void main() {
   group('responsive layout', () {
     for (final width in _windowWidths) {
       for (final destination in _destinations) {
-        testWidgets(
-          'has no overflow on the ${destination.name} page at '
-          '${width.toInt()} px',
-          (tester) async {
-            _setWindowSize(tester, Size(width, 800));
+        testWidgets('has no overflow on the ${destination.name} page at '
+            '${width.toInt()} px', (tester) async {
+          _setWindowSize(tester, Size(width, 800));
 
-            await tester.pumpWidget(const MaterialDefaultApp());
+          await tester.pumpWidget(const MaterialDefaultApp());
+          await tester.pumpAndSettle();
+
+          final icon = destination.icon;
+          if (icon != null) {
+            await tester.tap(find.byIcon(icon));
             await tester.pumpAndSettle();
+          }
 
-            final icon = destination.icon;
-            if (icon != null) {
-              await tester.tap(find.byIcon(icon));
-              await tester.pumpAndSettle();
-            }
-
-            // Layout overflows are reported as exceptions during the test.
-            expect(tester.takeException(), isNull);
-          },
-        );
+          // Layout overflows are reported as exceptions during the test.
+          expect(tester.takeException(), isNull);
+        });
       }
     }
   });
