@@ -7,6 +7,7 @@ checked, say so explicitly in your final message and explain why.
 
 - [ ] Uses `MaterialApp` with `AppTheme` and `useMaterial3: true`.
 - [ ] Uses native Material 3 widgets; no Cupertino substitutes.
+- [ ] **100 % Samsung Icons only**: every icon comes from a verified Samsung One UI source (`OneUIProject/oneui-icons`, `thatjoshguy67/oneui-icons`, `SamsungInternet/OneUI-Web`, or `one_uikit`); zero `Icons.*`, `CupertinoIcons.*`, or non-Samsung icons (`docs/ICONOGRAPHY.md`).
 - [ ] All colours come from `Theme.of(context).colorScheme` or `context.statusColors` (`AppStatusColors`).
 - [ ] All text styles come from `Theme.of(context).textTheme`.
 - [ ] Spacing uses `AppSpacing`; no magic numbers.

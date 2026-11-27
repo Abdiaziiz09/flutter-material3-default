@@ -52,7 +52,33 @@ Every application built from this repository must be:
   `docs/PLATFORM_SUPPORT.md`).
 - Details: `docs/MATERIAL3_GUIDELINES.md` and `docs/DESIGN_TOKENS.md`.
 
-### 2.2 Context-aware motion and interaction
+### 2.2 Samsung Icons Only (100% Mandatory)
+
+Every icon used in any application built from this repository **must** be a
+**Samsung Icon (One UI Icon)** — 100 % of the time, with zero exceptions.
+
+- **Strictly forbidden**: Using `Icons.*` (Material Icons), `CupertinoIcons.*`,
+  FontAwesome, Lucide, Feather, or any other non-Samsung icon pack, as well as
+  guessing, approximating, or inventing icons from memory.
+- **Visual standard**: Samsung One UI style — softly rounded corners, friendly
+  organic geometry, medium rounded-cap/rounded-join strokes (~1.75–2 dp) for
+  default/unselected icons, and solid filled rounded silhouettes for active
+  navigation states.
+- **Verified sources** (always retrieve icons from these exact locations):
+  1. `OneUIProject/oneui-icons` (`https://github.com/OneUIProject/oneui-icons`)
+     — 880+ official Samsung One UI system icons (`ic_oui_*`).
+  2. `thatjoshguy67/oneui-icons` (`https://github.com/thatjoshguy67/oneui-icons`)
+     — 973+ Samsung One UI SVG icons.
+  3. `SamsungInternet/OneUI-Web` (`https://github.com/SamsungInternet/OneUI-Web`,
+     `oui-css/icons`) — official Samsung One UI Web icon assets.
+  4. `one_uikit` (`https://pub.dev/packages/one_uikit`) — Flutter package with
+     categorised One UI SVG icons.
+- If a needed icon cannot be found in any of the verified Samsung One UI
+  sources above, **stop and ask the user** to supply or approve the exact SVG
+  asset. Never fall back to `Icons.*`.
+- Integration guide and full specification: `docs/ICONOGRAPHY.md`.
+
+### 2.3 Context-aware motion and interaction
 
 - Motion is **communication, continuity and tactile feedback** — never
   decoration. Animate only when it clarifies a state change, preserves spatial

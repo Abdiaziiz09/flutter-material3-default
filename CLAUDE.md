@@ -8,6 +8,7 @@ agent working here.
 
 Quick reminders:
 
+- **Samsung Icons Only (100% Mandatory)**: Every icon must be a **Samsung Icon (One UI Icon)** — never use `Icons.*`, `CupertinoIcons.*`, or any other icon set, and never guess or invent icons. Retrieve exact icons from `OneUIProject/oneui-icons`, `thatjoshguy67/oneui-icons`, `SamsungInternet/OneUI-Web`, or `one_uikit`. See `docs/ICONOGRAPHY.md`.
 - **Invisible foundation**: Never expose the design system in the UI. No text,
   label or tooltip that mentions Material 3 tokens, AppMotion, TactileSurface,
   or the design system itself. The UI contains only the product's own content.

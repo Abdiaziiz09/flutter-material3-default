@@ -8,6 +8,12 @@ alwaysApply: true
 Read and follow [AGENTS.md](mdc:AGENTS.md) in full for every task. The most
 important rules are repeated here.
 
+- **Samsung Icons Only (100% Mandatory)**: Every icon in the app must be a
+  **Samsung Icon (One UI Icon)**. Never use `Icons.*` (Material Icons),
+  `CupertinoIcons.*`, or any other icon set, and never guess or invent icons.
+  Retrieve exact icons from `OneUIProject/oneui-icons`,
+  `thatjoshguy67/oneui-icons`, `SamsungInternet/OneUI-Web`, or `one_uikit`.
+  See `docs/ICONOGRAPHY.md`.
 - **Invisible foundation**: The design system is silent. Never place any UI
   text, label, badge or tooltip that references Material 3, AppMotion, the
   design system, or its primitives. The app's UI must contain only content that

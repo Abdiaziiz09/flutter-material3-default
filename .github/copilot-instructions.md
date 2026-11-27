@@ -4,6 +4,11 @@ This repository is the **Flutter Material 3 Default Standard**. The complete
 rules are in [`AGENTS.md`](../AGENTS.md); read it before generating code. The
 essentials:
 
+- **Samsung Icons Only (100% Mandatory)**: Every icon must be a **Samsung Icon
+  (One UI Icon)**. Never use `Icons.*` (Material Icons), `CupertinoIcons.*`, or
+  any other icon set, and never guess or invent icons. Retrieve exact icons
+  from `OneUIProject/oneui-icons`, `thatjoshguy67/oneui-icons`,
+  `SamsungInternet/OneUI-Web`, or `one_uikit`. See `docs/ICONOGRAPHY.md`.
 - **Invisible foundation**: Never surface the design system in the UI. No
   labels, badges or tooltips like "Built with Material 3 tokens", "Powered by
   AppMotion" or any reference to this design system. The UI shows only the

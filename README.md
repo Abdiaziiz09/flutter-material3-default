@@ -37,7 +37,7 @@ Give the agent the repository URL and a prompt such as:
 ```text
 Use https://github.com/Abdiaziiz09/flutter-material3-default as the **strict and exclusive foundation** for this project.
 
-**Before writing any code, thoroughly inspect and analyze the repository.** First, read `AGENTS.md`, `docs/AGENT_CHECKLIST.md`, and the relevant files in `docs/` (`ARCHITECTURE.md`, `MATERIAL3_GUIDELINES.md`, `DESIGN_TOKENS.md`, `MOTION_AND_INTERACTION.md`, `RESPONSIVE_DESIGN.md`, `NAMING_CONVENTIONS.md`, `DOCUMENTATION_STANDARDS.md`, and `ACCESSIBILITY.md`). Then examine `pubspec.yaml`, `analysis_options.yaml`, and the actual source code under `lib/` and `test/`.
+**Before writing any code, thoroughly inspect and analyze the repository.** First, read `AGENTS.md`, `docs/AGENT_CHECKLIST.md`, and the relevant files in `docs/` (`ARCHITECTURE.md`, `MATERIAL3_GUIDELINES.md`, `DESIGN_TOKENS.md`, `ICONOGRAPHY.md`, `MOTION_AND_INTERACTION.md`, `RESPONSIVE_DESIGN.md`, `NAMING_CONVENTIONS.md`, `DOCUMENTATION_STANDARDS.md`, and `ACCESSIBILITY.md`). Then examine `pubspec.yaml`, `analysis_options.yaml`, and the actual source code under `lib/` and `test/`.
 
 **Before implementation, summarize your findings using actual file paths, existing components, architecture, and conventions discovered.** Use these findings to guide your implementation. Do not start coding until the repository analysis is complete.
 
@@ -139,6 +139,7 @@ Highlights:
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Project structure and layering rules |
 | [`docs/MATERIAL3_GUIDELINES.md`](docs/MATERIAL3_GUIDELINES.md) | How to apply Material 3 correctly |
 | [`docs/DESIGN_TOKENS.md`](docs/DESIGN_TOKENS.md) | Colour, typography, spacing, radii and motion tokens |
+| [`docs/ICONOGRAPHY.md`](docs/ICONOGRAPHY.md) | Mandatory Samsung Icons (One UI) standard and verified sources |
 | [`docs/MOTION_AND_INTERACTION.md`](docs/MOTION_AND_INTERACTION.md) | Context-aware motion and tactile interaction principles |
 | [`docs/ENGAGEMENT_PRINCIPLES.md`](docs/ENGAGEMENT_PRINCIPLES.md) | Six foundational principles for engaging, frictionless experiences |
 | [`docs/RESPONSIVE_DESIGN.md`](docs/RESPONSIVE_DESIGN.md) | Breakpoints and adaptive layout patterns |
