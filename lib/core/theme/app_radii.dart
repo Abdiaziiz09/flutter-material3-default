@@ -46,4 +46,9 @@ abstract final class AppRadii {
   static const BorderRadius borderRadiusExtraLarge = BorderRadius.all(
     Radius.circular(extraLarge),
   );
+
+  /// Circular [BorderRadius] using [full] (9999 dp) for capsule/pill shapes.
+  static const BorderRadius borderRadiusFull = BorderRadius.all(
+    Radius.circular(full),
+  );
 }

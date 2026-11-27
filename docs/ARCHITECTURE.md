@@ -37,6 +37,7 @@ lib/
 │   ├── layout/
 │   │   ├── adaptive_scaffold.dart
 │   │   ├── app_destination.dart
+│   │   ├── floating_pill_nav_bar.dart
 │   │   ├── list_detail_layout.dart
 │   │   └── supporting_pane_layout.dart
 │   ├── motion/

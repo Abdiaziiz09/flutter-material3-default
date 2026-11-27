@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 
 /// Describes one top-level navigation destination.
 ///
-/// The same description is rendered by `AdaptiveScaffold` as a
-/// `NavigationDestination` (compact windows) or a `NavigationRailDestination`
-/// (larger windows).
+/// Ordered by priority: `AdaptiveScaffold` renders the highest-priority
+/// destinations directly on `FloatingPillNavBar` and groups overflow
+/// destinations into the `Menu` sheet.
 @immutable
 class AppDestination {
   /// Creates a navigation destination.

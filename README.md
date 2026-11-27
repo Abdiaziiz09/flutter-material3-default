@@ -125,8 +125,10 @@ Highlights:
   colour (`lib/core/theme/app_theme.dart`).
 - **Window size classes** following the Material 3 adaptive breakpoints
   (`lib/core/responsive/breakpoints.dart`).
-- **Adaptive navigation**: bottom navigation bar, navigation rail and extended
-  rail chosen automatically (`lib/core/layout/adaptive_scaffold.dart`).
+- **Floating pill navigation**: translucent frosted-glass pill bottom
+  navigation bar (`lib/core/layout/floating_pill_nav_bar.dart`) rendered
+  consistently across mobile, tablet, web, and desktop via `AdaptiveScaffold`,
+  with priority-based `Menu` overflow.
 - **Reusable responsive widgets** for page content width and card grids.
 - **Strict analysis** including mandatory doc comments
   (`analysis_options.yaml`).

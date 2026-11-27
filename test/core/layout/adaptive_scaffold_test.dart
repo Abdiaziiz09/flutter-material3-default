@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material3_default/core/layout/adaptive_scaffold.dart';
 import 'package:flutter_material3_default/core/layout/app_destination.dart';
+import 'package:flutter_material3_default/core/layout/floating_pill_nav_bar.dart';
 import 'package:flutter_material3_default/core/theme/app_theme.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -45,42 +46,20 @@ Future<void> _pumpScaffold(
 
 void main() {
   group('AdaptiveScaffold', () {
-    testWidgets('shows a navigation bar on compact windows', (tester) async {
-      _setWindowWidth(tester, 400);
+    for (final width in [320.0, 400.0, 700.0, 900.0, 1300.0, 1800.0]) {
+      testWidgets(
+        'always uses FloatingPillNavBar at ${width.toInt()} px without NavigationRail',
+        (tester) async {
+          _setWindowWidth(tester, width);
 
-      await _pumpScaffold(tester);
+          await _pumpScaffold(tester);
 
-      expect(find.byType(NavigationBar), findsOneWidget);
-      expect(find.byType(NavigationRail), findsNothing);
-      expect(find.text('Body content'), findsOneWidget);
-    });
-
-    testWidgets('shows a collapsed rail on medium windows', (tester) async {
-      _setWindowWidth(tester, 700);
-
-      await _pumpScaffold(tester);
-
-      expect(find.byType(NavigationBar), findsNothing);
-      expect(
-        tester.widget<NavigationRail>(find.byType(NavigationRail)).extended,
-        isFalse,
+          expect(find.byType(FloatingPillNavBar), findsOneWidget);
+          expect(find.byType(NavigationRail), findsNothing);
+          expect(find.text('Body content'), findsOneWidget);
+          expect(tester.takeException(), isNull);
+        },
       );
-    });
-
-    for (final width in [900.0, 1300.0, 1800.0]) {
-      testWidgets('shows an extended rail at ${width.toInt()} px', (
-        tester,
-      ) async {
-        _setWindowWidth(tester, width);
-
-        await _pumpScaffold(tester);
-
-        expect(find.byType(NavigationBar), findsNothing);
-        expect(
-          tester.widget<NavigationRail>(find.byType(NavigationRail)).extended,
-          isTrue,
-        );
-      });
     }
 
     testWidgets('reports the index of the tapped destination', (tester) async {
@@ -103,13 +82,11 @@ void main() {
       await _pumpScaffold(tester, body: const TextField());
       await tester.enterText(find.byType(TextField), 'kept text');
 
-      // Cross the compact/medium breakpoint, which swaps the navigation bar
-      // for a navigation rail.
-      tester.view.physicalSize = const Size(900, 800);
+      tester.view.physicalSize = const Size(1200, 800);
       await tester.pump();
 
       expect(find.text('kept text'), findsOneWidget);
-      expect(find.byType(NavigationRail), findsOneWidget);
+      expect(find.byType(FloatingPillNavBar), findsOneWidget);
     });
   });
 }

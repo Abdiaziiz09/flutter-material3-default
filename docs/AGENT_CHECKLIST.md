@@ -15,6 +15,9 @@ checked, say so explicitly in your final message and explain why.
 
 ## Responsive
 
+- [ ] Uses `AdaptiveScaffold` / `FloatingPillNavBar` (floating frosted-glass
+      pill bottom navigation bar with `extendBody: true` and `Menu` overflow
+      when > 4 destinations) across all screen sizes including Web & desktop.
 - [ ] No overflow at widths 320, 400, 600, 840, 1200 and 1600.
 - [ ] Layout adapts through `WindowSizeClass`, `ResponsiveBuilder`,
       `AdaptiveScaffold`, `AdaptiveContentContainer` or `ResponsiveSliverGrid`.

@@ -116,9 +116,24 @@ Every icon used in any application built from this repository **must** be a
   (`compact`, `medium`, `expanded`, `large`, `extraLarge`). Never write ad-hoc
   `MediaQuery.of(context).size.width > 600` checks in feature code.
 - Use `ResponsiveBuilder` (or `context.windowSizeClass`) to choose layouts.
-- Use `AdaptiveScaffold` for top-level navigation. It renders a
-  `NavigationBar` on compact windows, a `NavigationRail` on medium windows and
-  an extended `NavigationRail` on expanded windows and wider.
+- Use `AdaptiveScaffold` (`lib/core/layout/adaptive_scaffold.dart`) for
+  top-level navigation. **100 % Mandatory Floating Pill Navigation Bar**:
+  `AdaptiveScaffold` always renders `FloatingPillNavBar` — a floating,
+  frosted-glass, capsule-shaped bottom navigation bar (`extendBody: true` with
+  `BackdropFilter` blur) — across **every** screen size and platform (mobile,
+  tablet, web, and desktop). Scrolled content must pass visibly underneath the
+  floating pill while the bar keeps its exact floating shape. Never replace it
+  with a docked bar, `NavigationRail`, or `NavigationDrawer`, even on Web or
+  desktop.
+- **Priority-based overflow (`Menu`)**: Keep at most 4 primary slots on the
+  floating pill (ordered by importance). When an app has more destinations,
+  keep the highest-priority destinations on the pill and group all secondary
+  destinations into the `Menu` overflow sheet.
+- **User psychology in navigation**: The floating pill applies Fitts's Law
+  (bottom-center thumb/cursor ergonomics), Hick's Law (≤ 4 visible primary
+  choices to prevent overload), tactile press compression (`0.95` scale) +
+  `AppHaptics.selection()`, and continuous spatial depth (blurred
+  scroll-underneath layer).
 - Wrap page content in `AdaptiveContentContainer` so lines do not stretch
   across ultra-wide screens.
 - Use `ResponsiveSliverGrid` for card grids instead of fixed column counts.

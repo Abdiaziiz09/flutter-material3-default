@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material3_default/core/layout/app_destination.dart';
-import 'package:flutter_material3_default/core/responsive/breakpoints.dart';
-import 'package:flutter_material3_default/core/responsive/responsive_builder.dart';
+import 'package:flutter_material3_default/core/layout/floating_pill_nav_bar.dart';
 
-/// Top-level scaffold that picks the Material 3 navigation pattern that fits
-/// the available width.
+/// Top-level scaffold that renders the mandatory floating frosted-glass pill
+/// bottom navigation bar ([FloatingPillNavBar]) across **all** screen sizes
+/// and platforms (mobile, tablet, web, and desktop).
 ///
-/// | Window size class | Navigation                |
-/// | ----------------- | ------------------------- |
-/// | compact           | [NavigationBar] (bottom)  |
-/// | medium            | [NavigationRail]          |
-/// | expanded and up   | extended [NavigationRail] |
+/// The [body] extends behind the floating pill (`extendBody: true`) so scrolled
+/// content passes smoothly underneath the translucent bar, while scrollable
+/// widgets automatically receive bottom clearance at the end of their scroll
+/// range.
 ///
-/// The [body] keeps its state when the window is resized across a breakpoint,
-/// for example when a phone is rotated or a desktop window is dragged wider.
-///
-/// ```dart
-/// AdaptiveScaffold(
-///   destinations: destinations,
-///   selectedIndex: selectedIndex,
-///   onDestinationSelected: handleDestinationSelected,
-///   body: currentPage,
-/// )
-/// ```
+/// When [destinations] exceeds [maxPrimaryItems], the highest-priority
+/// destinations remain on the floating pill and the remaining destinations are
+/// grouped into the `Menu` overflow sheet.
 class AdaptiveScaffold extends StatefulWidget {
   /// Creates an adaptive scaffold.
   ///
@@ -33,6 +24,7 @@ class AdaptiveScaffold extends StatefulWidget {
     required this.selectedIndex,
     required this.onDestinationSelected,
     required this.body,
+    this.maxPrimaryItems = 4,
     super.key,
   }) : assert(
          destinations.length >= 2,
@@ -43,7 +35,7 @@ class AdaptiveScaffold extends StatefulWidget {
          'selectedIndex must refer to an existing destination.',
        );
 
-  /// Navigation destinations, in display order.
+  /// Navigation destinations, ordered from highest to lowest priority.
   final List<AppDestination> destinations;
 
   /// Index of the currently selected destination.
@@ -55,76 +47,28 @@ class AdaptiveScaffold extends StatefulWidget {
   /// Content of the selected destination.
   final Widget body;
 
+  /// Maximum number of primary slots shown directly on the floating pill
+  /// before overflowing secondary destinations into `Menu`.
+  final int maxPrimaryItems;
+
   @override
   State<AdaptiveScaffold> createState() => _AdaptiveScaffoldState();
 }
 
 class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
-  /// Width of the divider between the navigation rail and the body.
-  static const double _railDividerWidth = 1;
-
-  /// A global key lets Flutter move the body between the bottom-bar layout and
-  /// the rail layout without rebuilding its state (scroll position, input...).
   final GlobalKey _bodyKey = GlobalKey(debugLabel: 'AdaptiveScaffold body');
 
   @override
   Widget build(BuildContext context) {
-    final keyedBody = KeyedSubtree(key: _bodyKey, child: widget.body);
-
-    return ResponsiveBuilder(
-      builder: (context, windowSizeClass) {
-        if (windowSizeClass == WindowSizeClass.compact) {
-          return Scaffold(
-            body: keyedBody,
-            bottomNavigationBar: NavigationBar(
-              selectedIndex: widget.selectedIndex,
-              onDestinationSelected: widget.onDestinationSelected,
-              destinations: [
-                for (final destination in widget.destinations)
-                  NavigationDestination(
-                    icon: Icon(destination.icon),
-                    selectedIcon: Icon(destination.selectedIcon),
-                    label: destination.label,
-                  ),
-              ],
-            ),
-          );
-        }
-
-        final isRailExtended = windowSizeClass.isAtLeast(
-          WindowSizeClass.expanded,
-        );
-
-        return Scaffold(
-          body: Row(
-            children: [
-              NavigationRail(
-                selectedIndex: widget.selectedIndex,
-                onDestinationSelected: widget.onDestinationSelected,
-                extended: isRailExtended,
-                // An extended rail always shows labels beside the icons, so its
-                // label type must be `none`.
-                labelType: isRailExtended
-                    ? NavigationRailLabelType.none
-                    : NavigationRailLabelType.selected,
-                destinations: [
-                  for (final destination in widget.destinations)
-                    NavigationRailDestination(
-                      icon: Icon(destination.icon),
-                      selectedIcon: Icon(destination.selectedIcon),
-                      label: Text(destination.label),
-                    ),
-                ],
-              ),
-              const VerticalDivider(
-                width: _railDividerWidth,
-                thickness: _railDividerWidth,
-              ),
-              Expanded(child: keyedBody),
-            ],
-          ),
-        );
-      },
+    return Scaffold(
+      extendBody: true,
+      body: KeyedSubtree(key: _bodyKey, child: widget.body),
+      bottomNavigationBar: FloatingPillNavBar(
+        destinations: widget.destinations,
+        selectedIndex: widget.selectedIndex,
+        onDestinationSelected: widget.onDestinationSelected,
+        maxPrimaryItems: widget.maxPrimaryItems,
+      ),
     );
   }
 }

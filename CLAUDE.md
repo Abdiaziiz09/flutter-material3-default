@@ -15,6 +15,13 @@ Quick reminders:
 - **Design tokens**: use `Theme.of(context).colorScheme`, `textTheme`, `AppSpacing`, `AppRadii`, and `context.motion` (`AppMotion`).
 - **Context-aware motion & interaction**: use `ContextualSwitcher`, `SmoothExpandable`, and `TactileSurface` only where motion adds clarity or tactile feedback, and always respect `MediaQuery.disableAnimationsOf(context)`.
 - **Engagement foundations**: reduce friction, guide the default path, eliminate dead ends (`FeedbackStateView`), and preserve user progress (`docs/ENGAGEMENT_PRINCIPLES.md`).
+- **Mandatory Floating Pill Bottom Navigation (`FloatingPillNavBar`)**: Always
+  use `AdaptiveScaffold` / `FloatingPillNavBar` — a floating, frosted-glass,
+  capsule-shaped bottom navigation bar with `extendBody: true` (content scrolls
+  underneath) — across **every** screen size and platform (including Web and
+  desktop; never use `NavigationRail` or `NavigationDrawer`). Prioritize
+  destinations by importance: keep ≤ 4 primary items on the pill and overflow
+  secondary items into `Menu`.
 - **Fully responsive** using `lib/core/responsive/`, `AdaptiveScaffold`, and `ListDetailLayout`.
 - Meaningful names and `///` documentation on every public member.
 - Finish with `dart format .`, `flutter analyze` and `flutter test`. If you
