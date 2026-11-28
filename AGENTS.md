@@ -117,23 +117,31 @@ Every icon used in any application built from this repository **must** be a
   `MediaQuery.of(context).size.width > 600` checks in feature code.
 - Use `ResponsiveBuilder` (or `context.windowSizeClass`) to choose layouts.
 - Use `AdaptiveScaffold` (`lib/core/layout/adaptive_scaffold.dart`) for
-  top-level navigation. **100 % Mandatory Floating Pill Navigation Bar**:
-  `AdaptiveScaffold` always renders `FloatingPillNavBar` — a floating,
-  frosted-glass, capsule-shaped bottom navigation bar (`extendBody: true` with
-  `BackdropFilter` blur) — across **every** screen size and platform (mobile,
-  tablet, web, and desktop). Scrolled content must pass visibly underneath the
-  floating pill while the bar keeps its exact floating shape. Never replace it
-  with a docked bar, `NavigationRail`, or `NavigationDrawer`, even on Web or
-  desktop.
-- **Priority-based overflow (`Menu`)**: Keep at most 4 primary slots on the
-  floating pill (ordered by importance). When an app has more destinations,
-  keep the highest-priority destinations on the pill and group all secondary
-  destinations into the `Menu` overflow sheet.
-- **User psychology in navigation**: The floating pill applies Fitts's Law
-  (bottom-center thumb/cursor ergonomics), Hick's Law (≤ 4 visible primary
-  choices to prevent overload), tactile press compression (`0.95` scale) +
-  `AppHaptics.selection()`, and continuous spatial depth (blurred
-  scroll-underneath layer).
+  top-level navigation. **100 % Mandatory Responsive Navigation Split**:
+  - **Mobile & narrow responsive viewports (`compact` and `medium`, < 840 dp)**:
+    `AdaptiveScaffold` renders `FloatingPillNavBar` — a floating,
+    frosted-glass, capsule-shaped bottom navigation bar (`extendBody: true` with
+    `BackdropFilter` blur). Scrolled content must pass visibly underneath the
+    floating pill while the bar keeps its exact floating shape. Never replace
+    it with a docked bar.
+  - **Desktop, laptop, and PC web viewports (`expanded`, `large`, `extraLarge`,
+    ≥ 840 dp)**: `AdaptiveScaffold` renders `TopHeaderNavBar` — a top header
+    navigation menu with **no** bottom navigation bar. Never render a bottom
+    navigation bar, `NavigationRail`, or `NavigationDrawer` on wide desktop/web
+    screens.
+- **Priority-based overflow (`Menu` / Header Dropdown)**:
+  - On mobile/narrow viewports (`FloatingPillNavBar`): keep at most 4 primary
+    slots on the pill (ordered by importance) and group secondary destinations
+    into the `Menu` overflow sheet.
+  - On desktop/laptop web (`TopHeaderNavBar`): show primary destinations
+    horizontally in the header (up to `maxHeaderItems`, default 5) and overflow
+    additional destinations into a header dropdown menu (`More`).
+- **User psychology in navigation**: On mobile, the floating pill applies
+  Fitts's Law (bottom-center thumb ergonomics), Hick's Law (≤ 4 visible primary
+  choices), tactile press compression (`0.95` scale) + `AppHaptics.selection()`,
+  and continuous spatial depth (blurred scroll-underneath layer). On desktop/web,
+  the top header menu matches established web scanning expectations (top-left to
+  top-right F-pattern) and keeps the viewport unobstructed.
 - Wrap page content in `AdaptiveContentContainer` so lines do not stretch
   across ultra-wide screens.
 - Use `ResponsiveSliverGrid` for card grids instead of fixed column counts.

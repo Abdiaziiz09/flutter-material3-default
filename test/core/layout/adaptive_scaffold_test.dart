@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material3_default/core/layout/adaptive_scaffold.dart';
 import 'package:flutter_material3_default/core/layout/app_destination.dart';
 import 'package:flutter_material3_default/core/layout/floating_pill_nav_bar.dart';
+import 'package:flutter_material3_default/core/layout/top_header_nav_bar.dart';
 import 'package:flutter_material3_default/core/theme/app_theme.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -46,15 +47,33 @@ Future<void> _pumpScaffold(
 
 void main() {
   group('AdaptiveScaffold', () {
-    for (final width in [320.0, 400.0, 700.0, 900.0, 1300.0, 1800.0]) {
+    for (final width in [320.0, 400.0, 700.0]) {
       testWidgets(
-        'always uses FloatingPillNavBar at ${width.toInt()} px without NavigationRail',
+        'uses FloatingPillNavBar at ${width.toInt()} px without TopHeaderNavBar',
         (tester) async {
           _setWindowWidth(tester, width);
 
           await _pumpScaffold(tester);
 
           expect(find.byType(FloatingPillNavBar), findsOneWidget);
+          expect(find.byType(TopHeaderNavBar), findsNothing);
+          expect(find.byType(NavigationRail), findsNothing);
+          expect(find.text('Body content'), findsOneWidget);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+
+    for (final width in [840.0, 1200.0, 1600.0]) {
+      testWidgets(
+        'uses TopHeaderNavBar at ${width.toInt()} px without FloatingPillNavBar',
+        (tester) async {
+          _setWindowWidth(tester, width);
+
+          await _pumpScaffold(tester);
+
+          expect(find.byType(TopHeaderNavBar), findsOneWidget);
+          expect(find.byType(FloatingPillNavBar), findsNothing);
           expect(find.byType(NavigationRail), findsNothing);
           expect(find.text('Body content'), findsOneWidget);
           expect(tester.takeException(), isNull);
@@ -75,18 +94,20 @@ void main() {
       expect(selectedIndex, 1);
     });
 
-    testWidgets('keeps the body state when the window is resized', (
-      tester,
-    ) async {
-      _setWindowWidth(tester, 400);
-      await _pumpScaffold(tester, body: const TextField());
-      await tester.enterText(find.byType(TextField), 'kept text');
+    testWidgets(
+      'keeps body state when resized between mobile pill and desktop header',
+      (tester) async {
+        _setWindowWidth(tester, 400);
+        await _pumpScaffold(tester, body: const TextField());
+        await tester.enterText(find.byType(TextField), 'kept text');
 
-      tester.view.physicalSize = const Size(1200, 800);
-      await tester.pump();
+        tester.view.physicalSize = const Size(1200, 800);
+        await tester.pump();
 
-      expect(find.text('kept text'), findsOneWidget);
-      expect(find.byType(FloatingPillNavBar), findsOneWidget);
-    });
+        expect(find.text('kept text'), findsOneWidget);
+        expect(find.byType(TopHeaderNavBar), findsOneWidget);
+        expect(find.byType(FloatingPillNavBar), findsNothing);
+      },
+    );
   });
 }

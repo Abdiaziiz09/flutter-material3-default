@@ -61,7 +61,7 @@ Prefer the native Material 3 widget for each job:
 | Secondary action | `FilledButton.tonal` or `OutlinedButton` |
 | Low emphasis action | `TextButton` |
 | Floating primary action | `FloatingActionButton` / `.extended` |
-| Top-level navigation | `AdaptiveScaffold` / `FloatingPillNavBar` (100 % mandatory floating pill bar across all sizes) |
+| Top-level navigation | `AdaptiveScaffold`: `FloatingPillNavBar` (< 840 dp) and `TopHeaderNavBar` (≥ 840 dp desktop/web with header dropdown overflow) |
 | Choose one of few options | `SegmentedButton` |
 | Filters and tags | `FilterChip`, `ChoiceChip`, `InputChip` |
 | Grouped content | `Card` (`Card.filled`, `Card.outlined`) |

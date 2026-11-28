@@ -125,10 +125,11 @@ Highlights:
   colour (`lib/core/theme/app_theme.dart`).
 - **Window size classes** following the Material 3 adaptive breakpoints
   (`lib/core/responsive/breakpoints.dart`).
-- **Floating pill navigation**: translucent frosted-glass pill bottom
-  navigation bar (`lib/core/layout/floating_pill_nav_bar.dart`) rendered
-  consistently across mobile, tablet, web, and desktop via `AdaptiveScaffold`,
-  with priority-based `Menu` overflow.
+- **Responsive navigation**: `AdaptiveScaffold` renders `FloatingPillNavBar`
+  (`lib/core/layout/floating_pill_nav_bar.dart`) on mobile and narrow
+  viewports (< 840 dp, with `Menu` overflow), and switches to `TopHeaderNavBar`
+  (`lib/core/layout/top_header_nav_bar.dart`) on desktop/laptop web (≥ 840 dp,
+  with header dropdown menu overflow and no bottom bar).
 - **Reusable responsive widgets** for page content width and card grids.
 - **Strict analysis** including mandatory doc comments
   (`analysis_options.yaml`).

@@ -39,7 +39,8 @@ lib/
 │   │   ├── app_destination.dart
 │   │   ├── floating_pill_nav_bar.dart
 │   │   ├── list_detail_layout.dart
-│   │   └── supporting_pane_layout.dart
+│   │   ├── supporting_pane_layout.dart
+│   │   └── top_header_nav_bar.dart
 │   ├── motion/
 │   │   ├── contextual_switcher.dart
 │   │   ├── motion_priority.dart

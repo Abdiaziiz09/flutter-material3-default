@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material3_default/core/layout/app_destination.dart';
 import 'package:flutter_material3_default/core/layout/floating_pill_nav_bar.dart';
+import 'package:flutter_material3_default/core/layout/top_header_nav_bar.dart';
+import 'package:flutter_material3_default/core/responsive/breakpoints.dart';
+import 'package:flutter_material3_default/core/responsive/responsive_builder.dart';
 
-/// Top-level scaffold that renders the mandatory floating frosted-glass pill
-/// bottom navigation bar ([FloatingPillNavBar]) across **all** screen sizes
-/// and platforms (mobile, tablet, web, and desktop).
+/// Top-level scaffold that adapts navigation between mobile/narrow viewports
+/// and desktop/laptop web viewports:
 ///
-/// The [body] extends behind the floating pill (`extendBody: true`) so scrolled
-/// content passes smoothly underneath the translucent bar, while scrollable
-/// widgets automatically receive bottom clearance at the end of their scroll
-/// range.
+/// | Window size class                   | Navigation pattern                 |
+/// | ----------------------------------- | ---------------------------------- |
+/// | `compact` / `medium` (< 840 dp)     | [FloatingPillNavBar] (bottom pill) |
+/// | `expanded` and up (>= 840 dp)       | [TopHeaderNavBar] (header + menu)  |
 ///
-/// When [destinations] exceeds [maxPrimaryItems], the highest-priority
-/// destinations remain on the floating pill and the remaining destinations are
-/// grouped into the `Menu` overflow sheet.
+/// - On mobile and narrow responsive viewports, [FloatingPillNavBar] renders
+///   as a floating, frosted-glass pill with `extendBody: true` so content
+///   scrolls visibly underneath, overflowing excess destinations into `Menu`.
+/// - On desktop, laptop, and wide web viewports, [TopHeaderNavBar] renders a
+///   top header navigation bar with no bottom bar, overflowing excess
+///   destinations into a header dropdown menu (`More`).
 class AdaptiveScaffold extends StatefulWidget {
   /// Creates an adaptive scaffold.
   ///
@@ -25,6 +30,9 @@ class AdaptiveScaffold extends StatefulWidget {
     required this.onDestinationSelected,
     required this.body,
     this.maxPrimaryItems = 4,
+    this.maxHeaderItems = 5,
+    this.headerTitle,
+    this.headerActions,
     super.key,
   }) : assert(
          destinations.length >= 2,
@@ -47,9 +55,21 @@ class AdaptiveScaffold extends StatefulWidget {
   /// Content of the selected destination.
   final Widget body;
 
-  /// Maximum number of primary slots shown directly on the floating pill
-  /// before overflowing secondary destinations into `Menu`.
+  /// Maximum number of primary slots shown on [FloatingPillNavBar] before
+  /// overflowing secondary destinations into `Menu`.
   final int maxPrimaryItems;
+
+  /// Maximum number of primary slots shown on [TopHeaderNavBar] before
+  /// overflowing secondary destinations into the header dropdown menu.
+  final int maxHeaderItems;
+
+  /// Optional leading title or brand widget shown in [TopHeaderNavBar] on
+  /// wide desktop/web viewports.
+  final Widget? headerTitle;
+
+  /// Optional trailing action widgets shown in [TopHeaderNavBar] on wide
+  /// desktop/web viewports.
+  final List<Widget>? headerActions;
 
   @override
   State<AdaptiveScaffold> createState() => _AdaptiveScaffoldState();
@@ -60,15 +80,35 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: KeyedSubtree(key: _bodyKey, child: widget.body),
-      bottomNavigationBar: FloatingPillNavBar(
-        destinations: widget.destinations,
-        selectedIndex: widget.selectedIndex,
-        onDestinationSelected: widget.onDestinationSelected,
-        maxPrimaryItems: widget.maxPrimaryItems,
-      ),
+    final keyedBody = KeyedSubtree(key: _bodyKey, child: widget.body);
+
+    return ResponsiveBuilder(
+      builder: (context, windowSizeClass) {
+        if (windowSizeClass.isAtLeast(WindowSizeClass.expanded)) {
+          return Scaffold(
+            appBar: TopHeaderNavBar(
+              destinations: widget.destinations,
+              selectedIndex: widget.selectedIndex,
+              onDestinationSelected: widget.onDestinationSelected,
+              maxHeaderItems: widget.maxHeaderItems,
+              title: widget.headerTitle,
+              actions: widget.headerActions,
+            ),
+            body: keyedBody,
+          );
+        }
+
+        return Scaffold(
+          extendBody: true,
+          body: keyedBody,
+          bottomNavigationBar: FloatingPillNavBar(
+            destinations: widget.destinations,
+            selectedIndex: widget.selectedIndex,
+            onDestinationSelected: widget.onDestinationSelected,
+            maxPrimaryItems: widget.maxPrimaryItems,
+          ),
+        );
+      },
     );
   }
 }

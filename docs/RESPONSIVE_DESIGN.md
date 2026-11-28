@@ -10,11 +10,11 @@ The foundation follows the Material 3 adaptive breakpoints, implemented by
 
 | Class | Width (dp) | Typical devices | Navigation | Page margin | Grid columns hint |
 | ----- | ---------- | --------------- | ---------- | ----------- | ----------------- |
-| `compact` | 0 – 599 | Phones in portrait | `FloatingPillNavBar` | 16 | 1 – 2 |
-| `medium` | 600 – 839 | Tablets, foldables, phones in landscape | `FloatingPillNavBar` | 24 | 2 – 3 |
-| `expanded` | 840 – 1199 | Large tablets, small windows | `FloatingPillNavBar` | 24 | 3 – 4 |
-| `large` | 1200 – 1599 | Desktop windows | `FloatingPillNavBar` | 32 | 4+ |
-| `extraLarge` | 1600+ | Wide monitors | `FloatingPillNavBar` | 32 | 4+ with a content max width |
+| `compact` | 0 – 599 | Phones in portrait | `FloatingPillNavBar` (bottom pill) | 16 | 1 – 2 |
+| `medium` | 600 – 839 | Tablets, foldables, phones in landscape | `FloatingPillNavBar` (bottom pill) | 24 | 2 – 3 |
+| `expanded` | 840 – 1199 | Large tablets, small laptop windows | `TopHeaderNavBar` (header + dropdown) | 24 | 3 – 4 |
+| `large` | 1200 – 1599 | Desktop / laptop web windows | `TopHeaderNavBar` (header + dropdown) | 32 | 4+ |
+| `extraLarge` | 1600+ | Wide monitors | `TopHeaderNavBar` (header + dropdown) | 32 | 4+ with a content max width |
 
 Design for the **smallest** class first, then enhance for larger ones.
 
@@ -25,7 +25,7 @@ Design for the **smallest** class first, then enhance for larger ones.
 | `WindowSizeClass.fromWidth(width)` | Classifying a width (pure, testable). |
 | `context.windowSizeClass` | The class for the whole window (uses `MediaQuery.sizeOf`). |
 | `ResponsiveBuilder` | Choosing a layout from the width of its **own** constraints (use inside panes and cards). |
-| `AdaptiveScaffold` | Top-level navigation using the mandatory `FloatingPillNavBar` across all screen sizes (with automatic `Menu` overflow when destinations exceed 4). |
+| `AdaptiveScaffold` | Top-level navigation: renders `FloatingPillNavBar` on `compact`/`medium` (< 840 dp, with `Menu` sheet overflow) and `TopHeaderNavBar` on `expanded`+ (≥ 840 dp, with header dropdown overflow and no bottom bar). |
 | `AdaptiveContentContainer` | Centring content with a maximum width and responsive page margins. |
 | `ResponsiveSliverGrid` | Card grids whose column count follows the available width. |
 | `AppSpacing` | The spacing scale. |

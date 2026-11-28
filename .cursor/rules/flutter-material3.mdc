@@ -31,13 +31,14 @@ important rules are repeated here.
 - Apply **engagement foundations** (`docs/ENGAGEMENT_PRINCIPLES.md`): reduce
   friction on core actions, provide a clear default path, eliminate dead ends,
   and adapt to the product's domain.
-- **Mandatory Floating Pill Bottom Navigation (`FloatingPillNavBar`)**: Always
-  use `AdaptiveScaffold` / `FloatingPillNavBar` — a floating, frosted-glass,
-  capsule-shaped bottom navigation bar with `extendBody: true` (content scrolls
-  underneath) — across **all** window sizes and platforms (including Web and
-  desktop; never replace it with `NavigationRail` or `NavigationDrawer`).
-  Prioritize destinations by importance: keep ≤ 4 primary items on the pill
-  and group secondary items under `Menu`.
+- **Mandatory Responsive Navigation (`FloatingPillNavBar` + `TopHeaderNavBar`)**:
+  Use `AdaptiveScaffold` for top-level navigation. On mobile/narrow viewports
+  (< 840 dp, `compact` & `medium`), render `FloatingPillNavBar` (floating,
+  frosted-glass pill with `extendBody: true` and `Menu` overflow when > 4
+  items). On desktop/laptop web (≥ 840 dp, `expanded`+), render
+  `TopHeaderNavBar` (a top header menu with **no** bottom bar, overflowing
+  extra items into a header dropdown menu — never `NavigationRail` or
+  `NavigationDrawer`).
 - Make **every** screen and component fully responsive using the window size
   classes in `lib/core/responsive/breakpoints.dart`, `ResponsiveBuilder`,
   `AdaptiveScaffold`, `ListDetailLayout`, `AdaptiveContentContainer`,

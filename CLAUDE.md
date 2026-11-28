@@ -15,13 +15,14 @@ Quick reminders:
 - **Design tokens**: use `Theme.of(context).colorScheme`, `textTheme`, `AppSpacing`, `AppRadii`, and `context.motion` (`AppMotion`).
 - **Context-aware motion & interaction**: use `ContextualSwitcher`, `SmoothExpandable`, and `TactileSurface` only where motion adds clarity or tactile feedback, and always respect `MediaQuery.disableAnimationsOf(context)`.
 - **Engagement foundations**: reduce friction, guide the default path, eliminate dead ends (`FeedbackStateView`), and preserve user progress (`docs/ENGAGEMENT_PRINCIPLES.md`).
-- **Mandatory Floating Pill Bottom Navigation (`FloatingPillNavBar`)**: Always
-  use `AdaptiveScaffold` / `FloatingPillNavBar` — a floating, frosted-glass,
-  capsule-shaped bottom navigation bar with `extendBody: true` (content scrolls
-  underneath) — across **every** screen size and platform (including Web and
-  desktop; never use `NavigationRail` or `NavigationDrawer`). Prioritize
-  destinations by importance: keep ≤ 4 primary items on the pill and overflow
-  secondary items into `Menu`.
+- **Mandatory Responsive Navigation (`FloatingPillNavBar` + `TopHeaderNavBar`)**:
+  Use `AdaptiveScaffold` for all top-level navigation. On mobile/narrow
+  viewports (< 840 dp, `compact` & `medium`), it renders `FloatingPillNavBar`
+  (floating, frosted-glass pill with `extendBody: true` and `Menu` overflow
+  when > 4 items). On desktop/laptop web (≥ 840 dp, `expanded`+), it renders
+  `TopHeaderNavBar` (a top header menu with **no** bottom bar, overflowing
+  extra items into a header dropdown menu — never `NavigationRail` or
+  `NavigationDrawer`).
 - **Fully responsive** using `lib/core/responsive/`, `AdaptiveScaffold`, and `ListDetailLayout`.
 - Meaningful names and `///` documentation on every public member.
 - Finish with `dart format .`, `flutter analyze` and `flutter test`. If you

@@ -24,13 +24,14 @@ essentials:
   animations, and always respect `MediaQuery.disableAnimationsOf(context)`.
 - Follow **engagement foundations** (`docs/ENGAGEMENT_PRINCIPLES.md`): keep core
   actions effortless, guide the default path, and eliminate dead ends.
-- **Mandatory Floating Pill Bottom Navigation (`FloatingPillNavBar`)**: Always
-  use `AdaptiveScaffold` / `FloatingPillNavBar` — a floating, frosted-glass,
-  capsule-shaped bottom navigation bar with `extendBody: true` (content scrolls
-  underneath) — on **every** screen size and platform (including Web and
-  desktop; never use `NavigationRail` or `NavigationDrawer`). Order
-  destinations by importance: keep ≤ 4 primary items on the pill and overflow
-  secondary items into `Menu`.
+- **Mandatory Responsive Navigation (`FloatingPillNavBar` + `TopHeaderNavBar`)**:
+  Use `AdaptiveScaffold` for top-level navigation. On mobile/narrow viewports
+  (< 840 dp, `compact` & `medium`), render `FloatingPillNavBar` (floating,
+  frosted-glass pill with `extendBody: true` and `Menu` overflow when > 4
+  items). On desktop/laptop web (≥ 840 dp, `expanded`+), render
+  `TopHeaderNavBar` (a top header menu with **no** bottom bar, overflowing
+  extra items into a header dropdown menu — never `NavigationRail` or
+  `NavigationDrawer`).
 - Every screen and widget must be **fully responsive** (320 px to 2560 px,
   portrait and landscape, up to 200% text scale). Use `WindowSizeClass`,
   `ResponsiveBuilder`, `AdaptiveScaffold`, `ListDetailLayout`,
