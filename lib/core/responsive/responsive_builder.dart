@@ -29,15 +29,12 @@ class ResponsiveBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        // An unbounded width reports infinity, which classifies as the largest
-        // class; that is the safest assumption for unconstrained parents.
-        return builder(
-          context,
-          WindowSizeClass.fromWidth(constraints.maxWidth),
-        );
-      },
-    );
+    // Use the full window width from MediaQuery so that top-level layout
+    // decisions (e.g. mobile pill vs. desktop header nav) are based on the
+    // actual screen/window width, not the width of the nearest constrained
+    // ancestor. This prevents a narrow LayoutBuilder constraint (e.g. inside
+    // a Column or Dialog) from being misclassified as a compact window.
+    final windowWidth = MediaQuery.sizeOf(context).width;
+    return builder(context, WindowSizeClass.fromWidth(windowWidth));
   }
 }
